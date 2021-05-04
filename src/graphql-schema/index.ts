@@ -6,6 +6,7 @@ type AuthData {
   token: String!
   tokenExpiration: Int!
 }
+
 input UserInput {
   email: String!
   password: String!
@@ -15,14 +16,24 @@ input AuthInput {
   email: String!
   password: String!
 }
+
 type User {
   _id: ID!
   email: String!
   username: String
 }
+
+type Query {
+  user(id: ID!): User
+  userProfile: User
+  users: [User]
+
+}
+
 type Mutation {
   login(authInput: AuthInput): AuthData
   singup(userInput: UserInput): User
+
 }
 
 

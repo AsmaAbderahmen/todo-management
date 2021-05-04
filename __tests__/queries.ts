@@ -53,3 +53,75 @@ test("login returns a token", async (done) => {
             done();
         });
 });
+
+test("users", async (done) => {
+    request
+        .post('/graphql')
+        .send({
+            query: `query {
+        users {
+          _id
+       email
+       username
+        }
+      }`,
+        })
+        .set("Accept", "application/json")
+        .set('Authorization', 'abc123')
+        .expect("Content-Type", /json/)
+        .expect(200)
+        .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.data.login.token).toBeDefined()
+            done();
+        });
+});
+
+test("user", async (done) => {
+    request
+        .post('/graphql')
+        .send({
+            query: `query {
+        user(id:"608aa6c8e55eb81ca85ccf2d")  {
+          _id
+          email
+          username }
+      }`,
+        })
+        .set("Accept", "application/json")
+        .set('Authorization', 'abc123')
+        .expect("Content-Type", /json/)
+        .expect(200)
+        .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.data.login.token).toBeDefined()
+            done();
+        });
+});
+
+test("userProfile", async (done) => {
+    request
+        .post('/graphql')
+        .send({
+            query: `query {
+        user  {
+         _id
+         email
+         username
+        
+        }
+      }`,
+        })
+        .set("Accept", "application/json")
+        .set('Authorization', 'abc123')
+        .expect("Content-Type", /json/)
+        .expect(200)
+        .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.data.login.token).toBeDefined()
+            done();
+        });
+});
