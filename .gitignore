@@ -1,2 +1,14 @@
-/node_modules
+
+
+# build
 /build
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+
+
+
+
