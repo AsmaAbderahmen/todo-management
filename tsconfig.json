@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "allowJs": true,
+    "outDir": "./build",
+    "module": "commonjs",
+    "rootDir": ".",
+    "strict": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest"]
+
+  },
+  "typeRoots": ["@types", "node_modules/@types"],
+  "include": ["src/models/*.ts","src/controllers/**/*", "src/middleware/*.ts", "src/routes/**/*", "src/routes/*.ts", "src/*.ts"],
+  "exclude": ["src/types/*.ts", "node_modules"]
+}
