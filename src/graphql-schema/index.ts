@@ -1,7 +1,29 @@
 import {buildSchema} from 'graphql';
 
 export const graphQlSchema = buildSchema(`
-type Query {
-   hello: String
+type AuthData {
+  id: ID!
+  token: String!
+  tokenExpiration: Int!
 }
+input UserInput {
+  email: String!
+  password: String!
+  username:String!
+}
+input AuthInput {
+  email: String!
+  password: String!
+}
+type User {
+  _id: ID!
+  email: String!
+  username: String
+}
+type Mutation {
+  login(authInput: AuthInput): AuthData
+  singup(userInput: UserInput): User
+}
+
+
 `);
