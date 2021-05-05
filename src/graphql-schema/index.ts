@@ -6,14 +6,12 @@ type AuthData {
   token: String!
   tokenExpiration: Int!
 }
-
 input TodoInput {
   title: String!
   description: String!
   owner:ID!
   guests: [String]
 }
-
 input UserInput {
   email: String!
   password: String!
@@ -56,7 +54,7 @@ type Query {
 
 type Mutation {
   login(authInput: AuthInput): AuthData
-  singup(userInput: UserInput): User
+  signup(userInput: UserInput): User
   createTodo(title: String, description: String): Todo
   updateTodo(id:String,title: String, description: String, done: Boolean):Todo
   deleteTodo(id:String):String 

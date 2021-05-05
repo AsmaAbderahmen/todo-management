@@ -1,12 +1,12 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import User from '../models/user';
+import * as jwt from 'jsonwebtoken'
+import * as bcrypt from 'bcrypt'
 import {IAuthData, IUser} from '../types/user';
 import config from '../config/config';
+import User from '../models/user'
 
-const singup = async (args: any): Promise<IUser | Error> => {
+const signup = async (args: any): Promise<IUser | Error> => {
     try {
-        const existingUser = await User.findOne({email: args.userInput.email});
+        const existingUser = await User.findOne({email: args.userInput['email']});
         if (existingUser) {
             return new Error('User exists already.');
         }
@@ -40,4 +40,4 @@ const login = async (args: any): Promise<IAuthData> => {
     return {id: user.id, token: token, tokenExpiration: 1};
 };
 
-export default {login, singup};
+export default {login, signup};

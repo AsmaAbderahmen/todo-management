@@ -4,7 +4,7 @@ import app, {db} from "../src/app";
 const request = supertest(app);
 
 // timeout 10 seconds
-jest.setTimeout(100000);
+jest.setTimeout(10000);
 afterAll(async (done) => {
     await db.connection.close();
     done();
@@ -28,7 +28,6 @@ test("signup returns user data ", async (done) => {
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -49,7 +48,6 @@ test("login returns a token", async (done) => {
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -71,13 +69,12 @@ test("creatTodo", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+        .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -99,13 +96,13 @@ test("updateTodo", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -127,13 +124,13 @@ test("shareTodo", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -148,13 +145,13 @@ test("deleteTodo", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -175,13 +172,13 @@ test("commentTodo", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -200,13 +197,13 @@ test("users", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -223,13 +220,13 @@ test("user", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -251,13 +248,13 @@ test("userProfile", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
+
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -279,13 +276,12 @@ test("todos", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+        .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });
@@ -307,13 +303,12 @@ test("todo", async (done) => {
       }`,
         })
         .set("Accept", "application/json")
-        .set('Authorization', 'abc123')
+        .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOGFhNmM4ZTU1ZWI4MWNhODVjY2YyZCIsImVtYWlsIjoiYXNtYS5hYmRlcmFobWVuQGdtYWlsLmNvbSIsImlhdCI6MTYyMDAwNDY4MywiZXhwIjoxNjIwMDA4MjgzfQ.W9DKp30_v7QaCrGMNuC6itUnZbWzKkoKhnoscsmVtzU')
         .expect("Content-Type", /json/)
         .expect(200)
         .end(function (err, res) {
             if (err) return done(err);
             expect(res.body).toBeInstanceOf(Object);
-            expect(res.body.data.login.token).toBeDefined()
             done();
         });
 });

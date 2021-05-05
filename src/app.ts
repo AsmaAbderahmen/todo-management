@@ -25,16 +25,28 @@ app.use(
         graphiql: true,
     })
 );
-mongoose.connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.uonv1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`,
-    {useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology:false})
-    .then(() => {
-    app.listen(PORT);
-    console.log(`server is listening on ${PORT}`);
-})
-.catch(err => {
-    console.log(err);
-});
+mongoose.Promise = global.Promise;
+
+var connectDB= async()=>{
+    let client= await   mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.uonv1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`, {useCreateIndex: true, useNewUrlParser: true})
+        .catch(e => {throw  e});
+    if (client) {
+        app.listen(PORT);
+        console.log(`server is listening on ${PORT}`);
+    }
+
+}
+connectDB();
+//  mongoose.connect(
+//     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.uonv1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`,
+//     {useCreateIndex: true, useNewUrlParser: true})
+//     .then(() => {
+//     app.listen(PORT);
+//     console.log(`server is listening on ${PORT}`);
+// })
+// .catch(err => {
+//     console.log(err);
+// });
 
 //export app and mongoose to be used on other files such as test files
 export default app;

@@ -14,18 +14,13 @@ export const isAuth: any = (expressRequest: Request, res: Response, next: any) =
     let jwtPayload;
 
     if (!authHeader) {
-        res.send({
-            message: "Something is wrong with the provided token, please try to login again",
-        });
+
         next();
         return;
     }
 
     const token: string = authHeader.split('Bearer ')[1];
     if (!token) {
-        res.send({
-            message: "Something is wrong with the token, please try to login again",
-        });
         next();
         return;
     }
