@@ -7,7 +7,8 @@
     "test": "cross-env MONGO_USER=asma  MONGO_PASSWORD=Up8lx8LzIFFHN2CX MONGO_DB=todo_db jest --detectOpenHandles",
     "start": "nodemon src/app.ts",
     "build": "tsc",
-    "serve": "cross-env MONGO_USER=asma  MONGO_PASSWORD=Up8lx8LzIFFHN2CX MONGO_DB=todo_db ts-node build/app.js"
+    "serve": "cross-env MONGO_USER=asma  MONGO_PASSWORD=Up8lx8LzIFFHN2CX MONGO_DB=todo_db ts-node build/app.js",
+    "docker": "docker run -it -e MONGO_USER=asma -e MONGO_PASSWORD=Up8lx8LzIFFHN2CX -e MONGO_DB=todo_db -p 4000:4000 todo-management"
   },
   "keywords": [
     "NodeJS",

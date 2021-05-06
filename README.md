@@ -35,7 +35,7 @@ docker build . -t todo-management
 ```
 run the already build image
 ```sh
-docker run -it -e MONGO_USER=asma -e MONGO_PASSWORD=Up8lx8LzIFFHN2CX -e MONGO_DB=todo_db -p 4000:4000 todo-management
+npm run docker
 ```
 
 
